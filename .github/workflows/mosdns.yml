@@ -1,6 +1,9 @@
 name: Update Rules
 
 on:
+  push:
+    paths:
+      - 'mosdns.txt'  # 当 mosdns.txt 变动时触发
   schedule:
     - cron: '0 0 * * *' # 每天 UTC 00:00
   workflow_dispatch:
