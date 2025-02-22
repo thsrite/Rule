@@ -1,0 +1,64 @@
+name: Update Rules
+
+on:
+  schedule:
+    - cron: '0 0 * * *' # 每天 UTC 00:00
+  workflow_dispatch:
+
+jobs:
+  update-rules:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+
+      - name: Install dependencies
+        run: |
+          pip install pyyaml
+
+      - name: Process rules
+        run: |
+          python - <<EOF
+          import yaml
+          import os
+          import subprocess
+
+          # 创建 rules 目录
+          os.makedirs('rules', exist_ok=True)
+
+          # 读取 mosdns.yaml（去掉 rules 层）
+          with open('mosdns.yaml', 'r') as f:
+              config = yaml.safe_load(f)
+
+          # 处理每个规则
+          for rule in config:  # 直接遍历顶层列表
+              name = rule['name']
+              url = rule['url']
+              output_file = f"rules/{name}.txt"
+              
+              # 下载文件
+              subprocess.run(['curl', '-o', f"{name}.list", url], check=True)
+              
+              # 处理文件：替换 DOMAIN-SUFFIX 并去掉注释
+              with open(f"{name}.list", 'r') as infile, open(output_file, 'w') as outfile:
+                  for line in infile:
+                      if not line.strip().startswith('#'):
+                          modified_line = line.replace('DOMAIN-SUFFIX', 'keyword:')
+                          outfile.write(modified_line)
+              
+              # 清理临时文件
+              os.remove(f"{name}.list")
+          EOF
+
+      - name: Commit changes
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git add rules/*.txt
+          git commit -m "Update rules from mosdns.yaml" || echo "No changes to commit"
+          git push
