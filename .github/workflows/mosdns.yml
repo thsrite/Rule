@@ -3,9 +3,9 @@ name: Update Rules
 on:
   push:
     paths:
-      - 'mosdns.txt'  # 当 mosdns.txt 变动时触发
+      - 'mosdns.txt'
   schedule:
-    - cron: '0 0 * * *' # 每天 UTC 00:00
+    - cron: '0 0 * * *'
   workflow_dispatch:
 
 jobs:
@@ -20,43 +20,45 @@ jobs:
           python - <<EOF
           import os
           import subprocess
-          from collections import defaultdict
+          from collections import OrderedDict
 
           # 创建 mosdns 目录
           os.makedirs('mosdns', exist_ok=True)
 
-          # 读取 mosdns.txt 并分组
-          rules = defaultdict(list)
+          # 读取 mosdns.txt 并保持顺序
+          rules = []
           with open('mosdns.txt', 'r') as f:
               for line in f:
                   name, url = line.strip().split(' ', 1)
-                  rules[name].append(url)
+                  rules.append((name, url))
+
+          # 使用 OrderedDict 来保持顺序并去重
+          rule_dict = OrderedDict()
 
           # 处理每个规则
-          for name, urls in rules.items():
+          for name, url in rules:
               output_file = f"mosdns/{name}.txt"
-              unique_rules = set()
+              temp_file = f"{name}_{url.split('/')[-1]}.list"
+              subprocess.run(['curl', '-o', temp_file, url], check=True)
               
-              # 下载并处理所有 URL 的内容
-              for i, url in enumerate(urls):
-                  temp_file = f"{name}_{i}.list"
-                  subprocess.run(['curl', '-o', temp_file, url], check=True)
-                  
-                  with open(temp_file, 'r') as infile:
-                      for line in infile:
-                          if not line.strip().startswith('#'):
-                              modified_line = line.replace('DOMAIN-SUFFIX,', 'full:') \
-                                                .replace('DOMAIN,', 'domain:') \
-                                                .replace('DOMAIN-KEYWORD,', 'keyword:') \
-                                                .strip()
-                              if modified_line:
-                                  unique_rules.add(modified_line)
-                  
-                  os.remove(temp_file)
+              with open(temp_file, 'r') as infile:
+                  for line in infile:
+                      if not line.strip().startswith('#'):
+                          modified_line = line.replace('DOMAIN-SUFFIX,', 'full:') \
+                                            .replace('DOMAIN,', 'domain:') \
+                                            .replace('DOMAIN-KEYWORD,', 'keyword:') \
+                                            .strip()
+                          if modified_line:
+                              # 使用 OrderedDict 按顺序存储
+                              rule_dict[modified_line] = None
               
-              # 写入去重后的规则
+              os.remove(temp_file)
+          
+          # 写入合并后的规则到一个文件
+          for name, _ in rules[:1]:  # 只取第一个 name，因为所有 URL 都属于 ChinaList
+              output_file = f"mosdns/{name}.txt"
               with open(output_file, 'w') as outfile:
-                  for rule_line in sorted(unique_rules):
+                  for rule_line in rule_dict.keys():
                       outfile.write(rule_line + '\n')
           EOF
 
