@@ -38,23 +38,37 @@ jobs:
           # 处理每个规则
           for rule in config:
               name = rule['name']
-              url = rule['url']
               output_file = f"mosdns/{name}.txt"
               
-              # 下载文件
-              subprocess.run(['curl', '-o', f"{name}.list", url], check=True)
+              # 检查是单个 url 还是多个 urls
+              urls = rule.get('urls', [rule.get('url')])
               
-              # 处理文件：替换规则类型并去掉注释
-              with open(f"{name}.list", 'r') as infile, open(output_file, 'w') as outfile:
-                  for line in infile:
-                      if not line.strip().startswith('#'):
-                          modified_line = line.replace('DOMAIN-SUFFIX,', 'full:') \
-                                            .replace('DOMAIN,', 'domain:') \
-                                            .replace('DOMAIN-KEYWORD,', 'keyword:')
-                          outfile.write(modified_line)
+              # 用于存储去重后的规则
+              unique_rules = set()
               
-              # 清理临时文件
-              os.remove(f"{name}.list")
+              # 下载并处理所有 URL 的内容
+              for i, url in enumerate(urls):
+                  temp_file = f"{name}_{i}.list"
+                  subprocess.run(['curl', '-o', temp_file, url], check=True)
+                  
+                  # 读取并处理文件
+                  with open(temp_file, 'r') as infile:
+                      for line in infile:
+                          if not line.strip().startswith('#'):
+                              modified_line = line.replace('DOMAIN-SUFFIX,', 'full:') \
+                                                .replace('DOMAIN,', 'domain:') \
+                                                .replace('DOMAIN-KEYWORD,', 'keyword:') \
+                                                .strip()
+                              if modified_line:  # 确保不添加空行
+                                  unique_rules.add(modified_line)
+                  
+                  # 清理临时文件
+                  os.remove(temp_file)
+              
+              # 将去重后的规则写入输出文件
+              with open(output_file, 'w') as outfile:
+                  for rule_line in sorted(unique_rules):  # 可选：排序输出
+                      outfile.write(rule_line + '\n')
           EOF
 
       - name: Commit changes
