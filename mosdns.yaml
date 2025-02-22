@@ -1,1 +1,2 @@
-
+- name: Tesla
+  url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Tesla/Tesla.list
