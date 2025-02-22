@@ -44,11 +44,13 @@ jobs:
               # 下载文件
               subprocess.run(['curl', '-o', f"{name}.list", url], check=True)
               
-              # 处理文件：替换 "DOMAIN-SUFFIX," 为 "keyword:" 并去掉注释
+              # 处理文件：替换规则类型并去掉注释
               with open(f"{name}.list", 'r') as infile, open(output_file, 'w') as outfile:
                   for line in infile:
                       if not line.strip().startswith('#'):
-                          modified_line = line.replace('DOMAIN-SUFFIX,', 'keyword:')  # 替换 DOMAIN-SUFFIX, 为 keyword:
+                          modified_line = line.replace('DOMAIN-SUFFIX,', 'full:') \
+                                            .replace('DOMAIN,', 'domain:') \
+                                            .replace('DOMAIN-KEYWORD,', 'keyword:')
                           outfile.write(modified_line)
               
               # 清理临时文件
