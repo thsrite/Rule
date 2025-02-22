@@ -28,8 +28,8 @@ jobs:
           import os
           import subprocess
 
-          # 创建 rules 目录
-          os.makedirs('rules', exist_ok=True)
+          # 创建 mosdns 目录
+          os.makedirs('mosdns', exist_ok=True)
 
           # 读取 mosdns.yaml（去掉 rules 层）
           with open('mosdns.yaml', 'r') as f:
@@ -39,7 +39,7 @@ jobs:
           for rule in config:  # 直接遍历顶层列表
               name = rule['name']
               url = rule['url']
-              output_file = f"rules/{name}.txt"
+              output_file = f"mosdns/{name}.txt"
               
               # 下载文件
               subprocess.run(['curl', '-o', f"{name}.list", url], check=True)
@@ -59,6 +59,6 @@ jobs:
         run: |
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
-          git add rules/*.txt
+          git add mosdns/*.txt
           git commit -m "Update rules from mosdns.yaml" || echo "No changes to commit"
           git push
