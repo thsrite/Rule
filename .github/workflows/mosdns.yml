@@ -15,46 +15,56 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      - name: Cache downloaded files
+        uses: actions/cache@v3
+        with:
+          path: ~/.cache/rules
+          key: ${{ hashFiles('mosdns.txt') }}-rules-${{ github.run_id }}
+          restore-keys: |
+            ${{ hashFiles('mosdns.txt') }}-rules-
+
+      - name: Install requests
+        run: pip install requests
+
       - name: Process rules
         run: |
           python - <<EOF
           import os
-          import subprocess
+          import requests
           from collections import OrderedDict, defaultdict
 
-          # 创建 mosdns 目录
           os.makedirs('mosdns', exist_ok=True)
-
-          # 读取 mosdns.txt 并按 name 分组，同时保持 URL 顺序
+          os.makedirs('~/.cache/rules', exist_ok=True)
           rules_by_name = defaultdict(list)
           with open('mosdns.txt', 'r') as f:
               for line in f:
                   name, url = line.strip().split(' ', 1)
                   rules_by_name[name].append(url)
 
-          # 处理每个 name 的规则
           for name, urls in rules_by_name.items():
               output_file = f"mosdns/{name}.txt"
-              unique_rules = OrderedDict()  # 使用 OrderedDict 保持顺序并去重
+              unique_rules = OrderedDict()
               
-              # 按顺序处理每个 URL
               for i, url in enumerate(urls):
-                  temp_file = f"{name}_{i}.list"
-                  subprocess.run(['curl', '-o', temp_file, url], check=True)
+                  cache_file = f"~/.cache/rules/{name}_{i}.list"
+                  if os.path.exists(cache_file):
+                      with open(cache_file, 'r') as f:
+                          content = f.read()
+                  else:
+                      response = requests.get(url)
+                      content = response.text
+                      with open(cache_file, 'w') as f:
+                          f.write(content)
                   
-                  with open(temp_file, 'r') as infile:
-                      for line in infile:
-                          if not line.strip().startswith('#'):
-                              modified_line = line.replace('DOMAIN-SUFFIX,', 'full:') \
-                                                .replace('DOMAIN,', 'domain:') \
-                                                .replace('DOMAIN-KEYWORD,', 'keyword:') \
-                                                .strip()
-                              if modified_line:
-                                  unique_rules[modified_line] = None
-                  
-                  os.remove(temp_file)
+                  for line in content.splitlines():
+                      if not line.strip().startswith('#'):
+                          modified_line = line.replace('DOMAIN-SUFFIX,', 'full:') \
+                                            .replace('DOMAIN,', 'domain:') \
+                                            .replace('DOMAIN-KEYWORD,', 'keyword:') \
+                                            .strip()
+                          if modified_line:
+                              unique_rules[modified_line] = None
               
-              # 写入去重后的规则到对应文件
               with open(output_file, 'w') as outfile:
                   for rule_line in unique_rules.keys():
                       outfile.write(rule_line + '\n')
@@ -65,5 +75,10 @@ jobs:
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
           git add mosdns/*.txt
-          git commit -m "Update rules from mosdns.txt" || echo "No changes to commit"
-          git push
+          if git diff --staged --quiet; then
+            echo "No changes to commit"
+            exit 0
+          else
+            git commit -m "Update rules from mosdns.txt"
+            git push
+          fi
