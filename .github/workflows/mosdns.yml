@@ -12,38 +12,26 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Set up Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: '3.x'
-
-      - name: Install dependencies
-        run: |
-          pip install pyyaml
-
       - name: Process rules
         run: |
           python - <<EOF
-          import yaml
           import os
           import subprocess
+          from collections import defaultdict
 
           # 创建 mosdns 目录
           os.makedirs('mosdns', exist_ok=True)
 
-          # 读取 mosdns.yaml
-          with open('mosdns.yaml', 'r') as f:
-              config = yaml.safe_load(f)
+          # 读取 mosdns.txt 并分组
+          rules = defaultdict(list)
+          with open('mosdns.txt', 'r') as f:
+              for line in f:
+                  name, url = line.strip().split(' ', 1)
+                  rules[name].append(url)
 
           # 处理每个规则
-          for rule in config:
-              name = rule['name']
+          for name, urls in rules.items():
               output_file = f"mosdns/{name}.txt"
-              
-              # 检查是单个 url 还是多个 urls
-              urls = rule.get('urls', [rule.get('url')])
-              
-              # 用于存储去重后的规则
               unique_rules = set()
               
               # 下载并处理所有 URL 的内容
@@ -51,7 +39,6 @@ jobs:
                   temp_file = f"{name}_{i}.list"
                   subprocess.run(['curl', '-o', temp_file, url], check=True)
                   
-                  # 读取并处理文件
                   with open(temp_file, 'r') as infile:
                       for line in infile:
                           if not line.strip().startswith('#'):
@@ -59,15 +46,14 @@ jobs:
                                                 .replace('DOMAIN,', 'domain:') \
                                                 .replace('DOMAIN-KEYWORD,', 'keyword:') \
                                                 .strip()
-                              if modified_line:  # 确保不添加空行
+                              if modified_line:
                                   unique_rules.add(modified_line)
                   
-                  # 清理临时文件
                   os.remove(temp_file)
               
-              # 将去重后的规则写入输出文件
+              # 写入去重后的规则
               with open(output_file, 'w') as outfile:
-                  for rule_line in sorted(unique_rules):  # 可选：排序输出
+                  for rule_line in sorted(unique_rules):
                       outfile.write(rule_line + '\n')
           EOF
 
@@ -76,5 +62,5 @@ jobs:
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
           git add mosdns/*.txt
-          git commit -m "Update rules from mosdns.yaml" || echo "No changes to commit"
+          git commit -m "Update rules from mosdns.txt" || echo "No changes to commit"
           git push
