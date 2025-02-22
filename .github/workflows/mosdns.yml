@@ -20,45 +20,43 @@ jobs:
           python - <<EOF
           import os
           import subprocess
-          from collections import OrderedDict
+          from collections import OrderedDict, defaultdict
 
           # 创建 mosdns 目录
           os.makedirs('mosdns', exist_ok=True)
 
-          # 读取 mosdns.txt 并保持顺序
-          rules = []
+          # 读取 mosdns.txt 并按 name 分组，同时保持 URL 顺序
+          rules_by_name = defaultdict(list)
           with open('mosdns.txt', 'r') as f:
               for line in f:
                   name, url = line.strip().split(' ', 1)
-                  rules.append((name, url))
+                  rules_by_name[name].append(url)
 
-          # 使用 OrderedDict 来保持顺序并去重
-          rule_dict = OrderedDict()
-
-          # 处理每个规则
-          for name, url in rules:
+          # 处理每个 name 的规则
+          for name, urls in rules_by_name.items():
               output_file = f"mosdns/{name}.txt"
-              temp_file = f"{name}_{url.split('/')[-1]}.list"
-              subprocess.run(['curl', '-o', temp_file, url], check=True)
+              unique_rules = OrderedDict()  # 使用 OrderedDict 保持顺序并去重
               
-              with open(temp_file, 'r') as infile:
-                  for line in infile:
-                      if not line.strip().startswith('#'):
-                          modified_line = line.replace('DOMAIN-SUFFIX,', 'full:') \
-                                            .replace('DOMAIN,', 'domain:') \
-                                            .replace('DOMAIN-KEYWORD,', 'keyword:') \
-                                            .strip()
-                          if modified_line:
-                              # 使用 OrderedDict 按顺序存储
-                              rule_dict[modified_line] = None
+              # 按顺序处理每个 URL
+              for i, url in enumerate(urls):
+                  temp_file = f"{name}_{i}.list"
+                  subprocess.run(['curl', '-o', temp_file, url], check=True)
+                  
+                  with open(temp_file, 'r') as infile:
+                      for line in infile:
+                          if not line.strip().startswith('#'):
+                              modified_line = line.replace('DOMAIN-SUFFIX,', 'full:') \
+                                                .replace('DOMAIN,', 'domain:') \
+                                                .replace('DOMAIN-KEYWORD,', 'keyword:') \
+                                                .strip()
+                              if modified_line:
+                                  unique_rules[modified_line] = None
+                  
+                  os.remove(temp_file)
               
-              os.remove(temp_file)
-          
-          # 写入合并后的规则到一个文件
-          for name, _ in rules[:1]:  # 只取第一个 name，因为所有 URL 都属于 ChinaList
-              output_file = f"mosdns/{name}.txt"
+              # 写入去重后的规则到对应文件
               with open(output_file, 'w') as outfile:
-                  for rule_line in rule_dict.keys():
+                  for rule_line in unique_rules.keys():
                       outfile.write(rule_line + '\n')
           EOF
 
