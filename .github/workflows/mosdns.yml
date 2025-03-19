@@ -75,11 +75,16 @@ jobs:
 
                   # 处理规则内容
                   for line in content.splitlines():
-                      if not line.strip().startswith('#'):  # 忽略注释
-                          modified_line = line.replace('DOMAIN-SUFFIX,', 'full:') \
-                                            .replace('DOMAIN,', 'domain:') \
-                                            .replace('DOMAIN-KEYWORD,', 'keyword:') \
-                                            .strip()
+                      stripped_line = line.strip()
+                      if not stripped_line.startswith('#'):  # 忽略注释
+                          # 如果包含 IP-CIDR 或 IP-CIDR6，则跳过该行
+                          if 'IP-CIDR' in stripped_line or 'IP-CIDR6' in stripped_line:
+                              continue
+                          # 否则进行格式转换
+                          modified_line = stripped_line.replace('DOMAIN-SUFFIX,', 'full:') \
+                                                     .replace('DOMAIN,', 'domain:') \
+                                                     .replace('DOMAIN-KEYWORD,', 'keyword:') \
+                                                     .strip()
                           if modified_line:
                               unique_rules[modified_line] = None  # 去重，保留最后出现的
 
