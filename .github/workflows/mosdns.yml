@@ -15,14 +15,6 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Cache downloaded files
-        uses: actions/cache@v3
-        with:
-          path: ./cache/rules  # 使用相对路径，确保一致性
-          key: ${{ hashFiles('mosdns.txt') }}-rules-${{ github.run_id }}
-          restore-keys: |
-            ${{ hashFiles('mosdns.txt') }}-rules-
-
       - name: Install dependencies
         run: pip install requests==2.28.1  # 指定版本以确保一致性
 
@@ -35,9 +27,7 @@ jobs:
           from pathlib import Path
 
           # 定义目录
-          cache_dir = Path("./cache/rules")
           mosdns_dir = Path("mosdns")
-          cache_dir.mkdir(parents=True, exist_ok=True)
           mosdns_dir.mkdir(exist_ok=True)
 
           # 读取 mosdns.txt 并按名称分组
@@ -58,20 +48,13 @@ jobs:
               unique_rules = OrderedDict()  # 保留顺序，后出现的规则覆盖前面的
 
               for i, url in enumerate(urls):
-                  cache_file = cache_dir / f"{name}_{i}.list"
-                  if cache_file.exists():
-                      with open(cache_file, 'r') as f:
-                          content = f.read()
-                  else:
-                      try:
-                          response = requests.get(url, timeout=10)
-                          response.raise_for_status()
-                          content = response.text
-                          with open(cache_file, 'w') as f:
-                              f.write(content)
-                      except requests.RequestException as e:
-                          print(f"Failed to fetch {url}: {e}")
-                          content = ""
+                  try:
+                      response = requests.get(url, timeout=10)
+                      response.raise_for_status()
+                      content = response.text
+                  except requests.RequestException as e:
+                      print(f"Failed to fetch {url}: {e}")
+                      content = ""
 
                   # 处理规则内容
                   for line in content.splitlines():
