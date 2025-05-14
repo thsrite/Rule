@@ -12,7 +12,16 @@ on:
       - main
     paths:
       - 'custom/*.txt'  # 当提交到 main 分支的 PR 涉及 custom/*.txt 变更时触发
-  workflow_dispatch:  # 支持手动触发工作流
+  workflow_dispatch:
+    inputs:
+      remove_comments:  # 手动触发时允许输入是否去掉注释和空行
+        description: 'Remove comments and empty lines from output files (true/false)'
+        required: false
+        default: 'false'  # 默认保留注释和空行
+
+# 环境变量
+env:
+  REMOVE_COMMENTS: ${{ github.event.inputs.remove_comments || 'false' }}  # 默认值 false，优先使用手动输入值
 
 # 作业定义
 jobs:
@@ -32,12 +41,13 @@ jobs:
           ls -l custom/ || echo "No files in custom/"  # 列出 custom/ 目录内容，确认是否存在 .txt 文件
           echo "Input file contents:"
           cat custom/*.txt || echo "No txt files found"  # 显示 custom/*.txt 文件内容，若无文件则提示
+          echo "REMOVE_COMMENTS=$REMOVE_COMMENTS"  # 打印开关状态以便调试
 
       # 步骤 3：处理 TXT 文件
       - name: Process TXT Files
         run: |
           # 创建输出目录
-          mkdir -p mihomo mosdns surge  # 确保 mihomo/、mosdns/ 和 surge/ 目录存在
+          mkdir -p mihomo mosdns surge
 
           # 遍历 custom/ 目录下的所有 .txt 文件
           for file in custom/*.txt; do
@@ -74,10 +84,12 @@ jobs:
                   prefix_mosdns="keyword:"        # mosdns：关键字匹配使用 keyword:
                   prefix_surge="DOMAIN-KEYWORD,"  # surge：关键字匹配使用 DOMAIN-KEYWORD,
                 }
-                # 将注释行写入所有临时文件
-                echo "$line" >> "$temp_mihomo"
-                echo "$line" >> "$temp_mosdns"
-                echo "$line" >> "$temp_surge"
+                # 根据 REMOVE_COMMENTS 决定是否写入注释或空行
+                if [[ "$REMOVE_COMMENTS" != "true" ]]; then
+                  echo "$line" >> "$temp_mihomo"
+                  echo "$line" >> "$temp_mosdns"
+                  echo "$line" >> "$temp_surge"
+                fi
                 continue
               fi
               # 处理 mihomo 输出
@@ -127,7 +139,7 @@ jobs:
           # 添加所有输出文件
           git add mihomo/*.list mosdns/*.txt surge/*.list
           # 提交更改，若无变更则打印提示
-          git commit -m "Process TXT files to mihomo, mosdns, and surge - $(date -u +'%Y-%m-%d %H:%M:%S UTC')" || echo "No changes to commit"
+          git commit -m "Process TXT files to mihomo, mosdns, and surge (comments and empty lines: $REMOVE_COMMENTS) - $(date -u +'%Y-%m-%d %H:%M:%S UTC')" || echo "No changes to commit"
           # 推送到仓库
           git push
         env:
