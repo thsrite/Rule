@@ -1,10 +1,10 @@
 telegram https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Telegram/Telegram.list
 tesla https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Tesla/Tesla.list
 telegram https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/TelegramNL/TelegramNL.list
-china-list https://raw.githubusercontent.com/Loyalsoldier/v2ray-rules-dat/refs/heads/release/china-list.txt
-china-list https://raw.githubusercontent.com/Loyalsoldier/v2ray-rules-dat/refs/heads/release/direct-tld-list.txt
-china-list https://raw.githubusercontent.com/Loyalsoldier/v2ray-rules-dat/refs/heads/release/apple-cn.txt
-china-list https://raw.githubusercontent.com/Loyalsoldier/v2ray-rules-dat/refs/heads/release/google-cn.txt
-china-list https://raw.githubusercontent.com/Loyalsoldier/v2ray-rules-dat/refs/heads/release/direct-list.txt
-proxy-list https://raw.githubusercontent.com/Loyalsoldier/v2ray-rules-dat/refs/heads/release/proxy-list.txt
-china-list https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/ChinaMaxNoIP/ChinaMaxNoIP.list
+china_list https://raw.githubusercontent.com/Loyalsoldier/v2ray_rules_dat/refs/heads/release/china_list.txt
+china_list https://raw.githubusercontent.com/Loyalsoldier/v2ray_rules_dat/refs/heads/release/direct_tld_list.txt
+china_list https://raw.githubusercontent.com/Loyalsoldier/v2ray_rules_dat/refs/heads/release/apple_cn.txt
+china_list https://raw.githubusercontent.com/Loyalsoldier/v2ray_rules_dat/refs/heads/release/google_cn.txt
+china_list https://raw.githubusercontent.com/Loyalsoldier/v2ray_rules_dat/refs/heads/release/direct_list.txt
+proxy_list https://raw.githubusercontent.com/Loyalsoldier/v2ray_rules_dat/refs/heads/release/proxy_list.txt
+china_list https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/ChinaMaxNoIP/ChinaMaxNoIP.list
