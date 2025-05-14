@@ -16,8 +16,8 @@ on:
     inputs:
       remove_comments:
         description: 'Remove comments and empty lines from output files (true/false)'
-        required: true
-        default: 'true'
+        required: false
+        default: 'false'
 
 # 环境变量
 env:
