@@ -1,4 +1,4 @@
-name: Process to Mihomo
+name: Process to Surge
 
 on:
   push:
@@ -27,8 +27,8 @@ jobs:
         with:
           python-version: '3.x'
 
-      - name: Create mihomo Directory
-        run: mkdir -p mihomo
+      - name: Create surge Directory
+        run: mkdir -p surge
 
       - name: Debug Input Files
         run: |
@@ -61,17 +61,17 @@ jobs:
               fi
             done < "$file"
             filename=$(basename "$file" .txt).list  # 将 .txt 替换为 .list
-            mv "$temp_file" "mihomo/$filename"
+            mv "$temp_file" "surge/$filename"
             echo "Output file contents:"
-            cat "mihomo/$filename"
+            cat "surge/$filename"
           done
 
       - name: Commit Changes
         run: |
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
-          git add mihomo/*.list  # 更新为添加 .list 文件
-          git commit -m "Process and move TXT files to mihomo as .list" || echo "No changes to commit"
+          git add surge/*.list  # 更新为添加 .list 文件
+          git commit -m "Process and move TXT files to surge as .list" || echo "No changes to commit"
           git push
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
