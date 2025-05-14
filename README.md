@@ -17,3 +17,13 @@
 - domain 和 full 匹配使用 HashMap，复杂度 O(1)。每 1w 域名约占用 1M 内存。
 
 - keyword 和 regexp 匹配需遍历，复杂度 O(n)。注意: regexp 正则匹配会消耗大量资源。
+
+## Mihomo 匹配规则
+
+- DOMAIN-SUFFIX 匹配域名后缀 例：google.com匹配www.google.com/mail.google.com和google.com,但不匹配content-google.com
+
+- DOMAIN 匹配完整域名
+
+- DOMAIN-KEYWORD 使用域名关键字匹配
+
+- DOMAIN-REGEX 域名正则表达式匹配
