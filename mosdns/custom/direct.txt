@@ -1,0 +1,6 @@
+full:api.day.app
+keyword:ipapi.co
+keyword:ip.sb
+keyword:ip-api.com
+#keyword:argotunnel.com
+#argotunnel.com
