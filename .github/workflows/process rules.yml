@@ -157,17 +157,16 @@ jobs:
             cat "surge/$base_filename.list"
           done
 
-      # 步骤 4：提交更改
       - name: Commit Changes
         run: |
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git config user.name "github-actions[bot]"
-          if git status -- क्र porcelain | grep -E 'mihomo/|mosdns/|surge/'; then
-            git add mihomo/*.list mosdns/*.txt surge/*.list
-            git commit -m "Process TXT files to mihomo, mosdns, and surge (comments: $REMOVE_COMMENTS) - $(date -u +'%Y-%m-%d %H:%M:%S UTC')"
-            git push || { echo "Failed to push changes"; exit 1; }
+          git add mihomo/*.list mosdns/*.txt surge/*.list || echo "No files to add"
+          if git diff --cached --quiet; then
+            echo "No changes to commit"
           else
-            echo "No output files generated, skipping commit"
+            git commit -m "Process TXT files (comments: $REMOVE_COMMENTS) - $(date -u +'%Y-%m-%d %H:%M:%S UTC')"
+            git push || { echo "Failed to push changes"; exit 1; }
           fi
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
