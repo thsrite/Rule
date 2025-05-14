@@ -1,4 +1,3 @@
-#完整匹配（如 google.com 仅匹配自身）
 full:derp1f.tailscale.com
 full:derp1g.tailscale.com
 full:derp1h.tailscale.com

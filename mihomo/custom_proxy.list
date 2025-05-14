@@ -1,7 +1,4 @@
-#域匹配（如 google.com 匹配自身及子域 *.google.com）
 DOMAIN-SUFFIX,speedtest.net
-
-#完整匹配（如 google.com 仅匹配自身）
 DOMAIN,hhanclub.top
 DOMAIN,pterclub.com
 DOMAIN,audiences.me
@@ -29,10 +26,6 @@ DOMAIN,fsm.name
 DOMAIN,fsm-static.eu.org
 DOMAIN,api.fsm.name
 DOMAIN,deb.debian.org
-
-#关键字匹配（如 google 匹配 google.com、google.com.hk 等含该字段的域名）
 DOMAIN-KEYWORD,sehuatang
 DOMAIN-KEYWORD,skyeysnow
-##cloudflare tunnel
 DOMAIN-KEYWORD,argotunnel
-

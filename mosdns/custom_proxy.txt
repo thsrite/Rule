@@ -1,7 +1,4 @@
-#域匹配（如 google.com 匹配自身及子域 *.google.com）
 domain:speedtest.net
-
-#完整匹配（如 google.com 仅匹配自身）
 full:hhanclub.top
 full:pterclub.com
 full:audiences.me
@@ -29,10 +26,6 @@ full:fsm.name
 full:fsm-static.eu.org
 full:api.fsm.name
 full:deb.debian.org
-
-#关键字匹配（如 google 匹配 google.com、google.com.hk 等含该字段的域名）
 keyword:sehuatang
 keyword:skyeysnow
-##cloudflare tunnel
 keyword:argotunnel
-
