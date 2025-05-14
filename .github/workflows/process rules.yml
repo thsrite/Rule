@@ -16,8 +16,8 @@ on:
     inputs:
       remove_comments:  # 手动触发时允许输入是否去掉注释和空行
         description: 'Remove comments and empty lines from output files (true/false)'
-        required: false
-        default: 'false'  # 默认保留注释和空行
+        required: true
+        default: 'true'  # 默认保留注释和空行
 
 # 环境变量
 env:
