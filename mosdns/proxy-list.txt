@@ -21102,7 +21102,7 @@ pcfeonline.ac.uk
 pcgamestorrents.com
 pchome.com.tw
 pchomeec.tw
-pchomeonline.com.tw
+full:pchomeonline.com.tw
 pchomepay.com.tw
 pcij.org
 pcl.ac.uk
@@ -31271,7 +31271,6 @@ full:osu.ppy.sh
 full:p-events-delivery.akamaized.net
 full:p16-tiktokcdn-com.akamaized.net
 full:paper-attachments.s3.amazonaws.com
-full:pchomeonline.com.tw
 full:pki.google.com
 full:play-edge.itunes.apple.com
 full:poshtestgallery.cloudapp.net
