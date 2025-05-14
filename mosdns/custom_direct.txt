@@ -4,3 +4,4 @@ keyword:ip.sb
 keyword:ip-api.com
 #keyword:argotunnel.com
 #argotunnel.com
+domain:ntp.org
