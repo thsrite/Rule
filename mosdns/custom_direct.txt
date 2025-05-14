@@ -1,6 +1,8 @@
 #域匹配（如 google.com 匹配自身及子域 *.google.com）
 ##Bark通知
 domain:api.day.app
+domain:test.
+domain:ntp.org
 
 ##IP查询
 domain:ip.sb
