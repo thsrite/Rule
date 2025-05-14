@@ -1,6 +1,5 @@
 name: Process to Mosdns
 
-# 触发工作流的事件
 on:
   push:
     branches:
@@ -8,7 +7,7 @@ on:
   pull_request:
     branches:
       - main
-  workflow_dispatch: # 添加手动触发
+  workflow_dispatch:
 
 jobs:
   process-files:
@@ -16,66 +15,59 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # 1. 检出代码
       - name: Checkout Code
         uses: actions/checkout@v4
 
-      # 2. 设置 Python 环境（用于处理文件）
       - name: Setup Python
         uses: actions/setup-python@v5
         with:
           python-version: '3.x'
 
-      # 3. 创建 mosdns 目录
       - name: Create mosdns Directory
         run: mkdir -p mosdns
 
-      # 4. 处理 custom 目录中的 txt 文件
+      - name: Debug Input Files
+        run: |
+          echo "Listing custom directory contents:"
+          ls -l custom/ || echo "No files in custom/"
+          echo "Input file contents:"
+          cat custom/*.txt || echo "No txt files found"
+
       - name: Process TXT Files
         run: |
           for file in custom/*.txt; do
-            if [ -f "$file" ]; then
-              echo "Processing $file"
-              # 创建临时文件
-              temp_file=$(mktemp)
-              # 读取文件并处理每一行
-              while IFS= read -r line; do
-                # 跳过空行和注释行
-                if [[ -z "$line" || "$line" =~ ^#.* ]]; then
-                  echo "$line" >> "$temp_file"
-                  continue
-                fi
-                # 根据行内容添加前缀
-                if [[ "$line" =~ ^#域匹配.* ]]; then
-                  prefix="domain:"
-                elif [[ "$line" =~ ^#完整匹配.* ]]; then
-                  prefix="full:"
-                elif [[ "$line" =~ ^#关键字匹配.* ]]; then
-                  prefix="keyword:"
-                else
-                  # 假设非注释行是域名，前面可能已经有 prefix
-                  if [[ "$line" =~ ^(domain:|full:|keyword:).* ]]; then
-                    echo "$line" >> "$temp_file"
-                  else
-                    echo "${prefix}${line}" >> "$temp_file"
-                  fi
-                  continue
-                fi
+            [ -f "$file" ] || continue
+            echo "Processing $file"
+            temp_file=$(mktemp)
+            prefix=""
+            while IFS= read -r line || [ -n "$line" ]; do
+              if [[ -z "$line" || "$line" =~ ^#.* ]]; then
+                [[ "$line" =~ ^#域匹配.* ]] && prefix="domain:"
+                [[ "$line" =~ ^#完整匹配.* ]] && prefix="full:"
+                [[ "$line" =~ ^#关键字匹配.* ]] && prefix="keyword:"
                 echo "$line" >> "$temp_file"
-              done < "$file"
-              # 获取文件名并移动到 mosdns 目录
-              filename=$(basename "$file")
-              mv "$temp_file" "mosdns/$filename"
-            fi
+                continue
+              fi
+              if [[ "$line" =~ ^(domain:|full:|keyword:).* ]]; then
+                echo "$line" >> "$temp_file"
+              elif [[ -n "$prefix" ]]; then
+                echo "${prefix}${line}" >> "$temp_file"
+              else
+                echo "$line" >> "$temp_file"
+              fi
+            done < "$file"
+            filename=$(basename "$file")
+            mv "$temp_file" "mosdns/$filename"
+            echo "Output file contents:"
+            cat "mosdns/$filename"
           done
 
-      # 5. 提交更改
       - name: Commit Changes
         run: |
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
           git add mosdns/*.txt
-          git commit -m "Process and move TXT files to mosdns folder" || echo "No changes to commit"
+          git commit -m "Process and move TXT files to mosdns" || echo "No changes to commit"
           git push
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
