@@ -4,9 +4,13 @@ on:
   push:
     branches:
       - main
+    paths:
+      - 'custom/*.txt'  # 当 custom/ 下的 .txt 文件变动时触发
   pull_request:
     branches:
       - main
+    paths:
+      - 'custom/*.txt'  # 当 custom/ 下的 .txt 文件变动时触发
   workflow_dispatch:
 
 jobs:
