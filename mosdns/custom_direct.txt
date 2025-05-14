@@ -1,7 +1,7 @@
 #域匹配（如 google.com 匹配自身及子域 *.google.com）
-#Bark通知
+##Bark通知
 domain:api.day.app
-#IP查询
+##IP查询
 domain:ip.sb
 domain:ip-api.com
 
@@ -9,5 +9,5 @@ domain:ip-api.com
 full:ipapi.co
 
 #关键字匹配（如 google 匹配 google.com、google.com.hk 等含该字段的域名）
-#cloudflare tunnel
+##cloudflare tunnel
 keyword:argotunnel
