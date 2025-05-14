@@ -12,5 +12,3 @@ domain:ip-api.com
 full:ipapi.co
 
 #关键字匹配（如 google 匹配 google.com、google.com.hk 等含该字段的域名）
-##cloudflare tunnel
-keyword:argotunnel

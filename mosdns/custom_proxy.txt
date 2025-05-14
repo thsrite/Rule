@@ -33,3 +33,6 @@ full:deb.debian.org
 #关键字匹配（如 google 匹配 google.com、google.com.hk 等含该字段的域名）
 keyword:sehuatang
 keyword:skyeysnow
+##cloudflare tunnel
+keyword:argotunnel
+
