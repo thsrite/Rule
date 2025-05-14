@@ -1,4 +1,55 @@
+#域匹配（如 google.com 匹配自身及子域 *.google.com）
 DOMAIN-SUFFIX,speedtest.net
+DOMAIN-SUFFIX,dmm.co.jp
+DOMAIN-SUFFIX,faleno.jp
+DOMAIN-SUFFIX,avbase.net
+DOMAIN-SUFFIX,javbus.com
+DOMAIN-SUFFIX,av-league.com
+DOMAIN-SUFFIX,aventertainments.com
+DOMAIN-SUFFIX,dahlia-av.jp
+DOMAIN-SUFFIX,jav321.com
+DOMAIN-SUFFIX,arzon.jp
+DOMAIN-SUFFIX,7pzzv.us
+
+#机场
+DOMAIN-SUFFIX,rabbitzone.pro
+
+#pikpak网盘
+DOMAIN-SUFFIX,mypikpak.com
+DOMAIN-SUFFIX,config.mypikpak.com
+DOMAIN-SUFFIX,user.mypikpak.com
+DOMAIN-SUFFIX,static.mypikpak.com
+DOMAIN-SUFFIX,access.mypikpak.com
+
+#媒体资源
+DOMAIN-SUFFIX,tmdb.org
+DOMAIN-SUFFIX,themoviedb
+DOMAIN-SUFFIX,fanart.tv
+DOMAIN-SUFFIX,opensubtitles.org
+DOMAIN-SUFFIX,18board.link
+DOMAIN-SUFFIX,mikanani.me
+DOMAIN-SUFFIX,opensubtitles.com
+
+#Docker
+DOMAIN-SUFFIX,d1q6f0aelx0por.cloudfront.net
+DOMAIN-SUFFIX,d2wy8f7a9ursnm.cloudfront.net
+DOMAIN-SUFFIX,d36jcksde1wxzq.cloudfront.net
+DOMAIN-SUFFIX,compose-spec.io
+DOMAIN-SUFFIX,docker.com
+DOMAIN-SUFFIX,docker.io
+DOMAIN-SUFFIX,dockerhub.com
+
+# 其他站
+DOMAIN-SUFFIX,ghproxy.com
+DOMAIN-SUFFIX,a6tkapp.com
+DOMAIN-SUFFIX,a6tka29.com
+DOMAIN-SUFFIX,a6tkchat.com
+DOMAIN-SUFFIX,a6tkapi1.com
+
+#药丸
+DOMAIN-KEYWORD,invites.fun
+
+#完整匹配（如 google.com 仅匹配自身）
 DOMAIN,hhanclub.top
 DOMAIN,pterclub.com
 DOMAIN,audiences.me
@@ -26,6 +77,28 @@ DOMAIN,fsm.name
 DOMAIN,fsm-static.eu.org
 DOMAIN,api.fsm.name
 DOMAIN,deb.debian.org
+#群晖
+DOMAIN,global.synologydownload.com
+#Synology 的下载服务
+
+DOMAIN,api.insight.synology.com
+#Synology 提供的一种远程监控和管理服务，用于收集设备性能数据、健康状况和其他信息
+
+DOMAIN,subscribe.insight.synology.com
+#用户订阅通知、更新，或发送有关设备状态的消息
+
+# Plex刮削部分
+DOMAIN,metadata.provider.plex.tv
+DOMAIN,metadata-static.plex.tv
+DOMAIN,images.plex.tv
+DOMAIN,downloads.plex.tv
+DOMAIN,me.plexapp.com
+DOMAIN,tvthemes.plexapp.com
+DOMAIN,scrobbles.plex.tv
+DOMAIN,registry.npmjs.org
+
+#关键字匹配（如 google 匹配 google.com、google.com.hk 等含该字段的域名）
 DOMAIN-KEYWORD,sehuatang
 DOMAIN-KEYWORD,skyeysnow
+##cloudflare tunnel
 DOMAIN-KEYWORD,argotunnel

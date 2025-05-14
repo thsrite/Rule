@@ -1,3 +1,4 @@
+#完整匹配（如 google.com 仅匹配自身）
 DOMAIN,derp1f.tailscale.com
 DOMAIN,derp1g.tailscale.com
 DOMAIN,derp1h.tailscale.com

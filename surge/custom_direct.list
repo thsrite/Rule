@@ -1,6 +1,14 @@
+#域匹配（如 google.com 匹配自身及子域 *.google.com）
+##Bark通知
 DOMAIN-SUFFIX,api.day.app
 DOMAIN-SUFFIX,test.
 DOMAIN-SUFFIX,ntp.org
+
+##IP查询
 DOMAIN-SUFFIX,ip.sb
 DOMAIN-SUFFIX,ip-api.com
+
+#完整匹配（如 google.com 仅匹配自身）
 DOMAIN,ipapi.co
+
+#关键字匹配（如 google 匹配 google.com、google.com.hk 等含该字段的域名）
