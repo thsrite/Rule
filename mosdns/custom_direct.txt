@@ -1,6 +1,0 @@
-domain:api.day.app
-domain:test.
-domain:ntp.org
-domain:ip.sb
-domain:ip-api.com
-full:ipapi.co

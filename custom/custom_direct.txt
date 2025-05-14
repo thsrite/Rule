@@ -1,14 +1,6 @@
-#域匹配（如 google.com 匹配自身及子域 *.google.com）
-##Bark通知
-api.day.app
-test.
-ntp.org
-
-##IP查询
-ip.sb
-ip-api.com
-
-#完整匹配（如 google.com 仅匹配自身）
-ipapi.co
-
-#关键字匹配（如 google 匹配 google.com、google.com.hk 等含该字段的域名）
+DOMAIN,api.day.app
+DOMAIN,ntp.org
+DOMAIN,ip.sb
+DOMAIN,ip-api.com
+DOMAIN,ipapi.co
+DOMAIN-KEYWORD,test.
