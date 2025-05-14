@@ -1,6 +1,7 @@
 #域匹配（如 google.com 匹配自身及子域 *.google.com）
 domain:speedtest.net
 domain:test.
+domain:ntp.org
 
 #完整匹配（如 google.com 仅匹配自身）
 full:hhanclub.top
