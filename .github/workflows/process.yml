@@ -1,0 +1,80 @@
+name: Process TXT Files and Move to mosdns
+
+# 触发工作流的事件
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  process-files:
+    name: Process TXT Files
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1. 检出代码
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      # 2. 设置 Python 环境（用于处理文件）
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+
+      # 3. 创建 mosdns 目录
+      - name: Create mosdns Directory
+        run: mkdir -p mosdns
+
+      # 4. 处理 custom 目录中的 txt 文件
+      - name: Process TXT Files
+        run: |
+          for file in custom/*.txt; do
+            if [ -f "$file" ]; then
+              echo "Processing $file"
+              # 创建临时文件
+              temp_file=$(mktemp)
+              # 读取文件并处理每一行
+              while IFS= read -r line; do
+                # 跳过空行和注释行
+                if [[ -z "$line" || "$line" =~ ^#.* ]]; then
+                  echo "$line" >> "$temp_file"
+                  continue
+                fi
+                # 根据行内容添加前缀
+                if [[ "$line" =~ ^#域匹配.* ]]; then
+                  prefix="domain:"
+                elif [[ "$line" =~ ^#完整匹配.* ]]; then
+                  prefix="full:"
+                elif [[ "$line" =~ ^#关键字匹配.* ]]; then
+                  prefix="keyword:"
+                else
+                  # 假设非注释行是域名，前面可能已经有 prefix
+                  if [[ "$line" =~ ^(domain:|full:|keyword:).* ]]; then
+                    echo "$line" >> "$temp_file"
+                  else
+                    echo "${prefix}${line}" >> "$temp_file"
+                  fi
+                  continue
+                fi
+                echo "$line" >> "$temp_file"
+              done < "$file"
+              # 获取文件名并移动到 mosdns 目录
+              filename=$(basename "$file")
+              mv "$temp_file" "mosdns/$filename"
+            fi
+          done
+
+      # 5. 提交更改
+      - name: Commit Changes
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git add mosdns/*.txt
+          git commit -m "Process and move TXT files to mosdns folder" || echo "No changes to commit"
+          git push
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
