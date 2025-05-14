@@ -1,0 +1,6 @@
+full:api.day.app
+full:ntp.org
+full:ip.sb
+full:ip-api.com
+full:ipapi.co
+keyword:test.
