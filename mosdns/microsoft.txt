@@ -1,6 +1,4 @@
-PROCESS-NAME,OneDrive
-PROCESS-NAME,OneDriveUpdater
-domain:1drv.com
+full:vsmarketplacebadge.apphb.com
 domain:1drv.ms
 domain:21vbc.com
 domain:21vbluecloud.com
@@ -243,7 +241,6 @@ domain:live.com
 domain:live.com.au
 domain:live.eu
 domain:live.net
-domain:livefilestore.com
 domain:livetileedge.dsx.mp.microsoft.com.edgekey.net
 domain:livingyourambition.com
 domain:localytics.com
@@ -498,7 +495,6 @@ domain:omniroot.com
 domain:onecollector.cloudapp.aria
 domain:onedrive.co
 domain:onedrive.co.uk
-domain:onedrive.com
 domain:onedrive.eu
 domain:onedrive.net
 domain:onedrive.org
@@ -554,8 +550,6 @@ domain:sfbassets.com
 domain:sfbassets.net
 domain:sfx.ms
 domain:sharepoint.cn
-domain:sharepoint.com
-domain:sharepointonline.com
 domain:signalr.net
 domain:skype
 domain:skype.com
@@ -563,7 +557,6 @@ domain:skype.net
 domain:skypeassets.com
 domain:skypeassets.net
 domain:skypeforbusiness.com
-domain:spoprod-a.akamaihd.net
 domain:sprinklesapp.com
 domain:sqlserveronlinux.com
 domain:staffhub.ms
@@ -662,7 +655,14 @@ domain:xboxstudios.com
 domain:xbx.lv
 domain:yammer.com
 domain:yammerusercontent.com
-full:vsmarketplacebadge.apphb.com
+domain:1drv.com
+domain:livefilestore.com
+domain:onedrive.com
+domain:sharepoint.com
+domain:sharepointonline.com
+domain:spoprod-a.akamaihd.net
 keyword:1drv
 keyword:onedrive
 keyword:skydrive
+PROCESS-NAME,OneDrive
+PROCESS-NAME,OneDriveUpdater
