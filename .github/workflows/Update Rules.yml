@@ -3,7 +3,7 @@ name: Update Rules
 on:
   push:
     paths:
-      - 'mosdns.txt'
+      - 'rules.txt'
   schedule:
     - cron: '0 0 * * *'  # 每天 UTC 0:00 运行
   workflow_dispatch:
@@ -45,10 +45,10 @@ jobs:
           mihomo_dir.mkdir(exist_ok=True)
           surge_dir.mkdir(exist_ok=True)
 
-          # 读取 mosdns.txt
+          # 读取 rules.txt
           rules_by_name = defaultdict(list)
           try:
-              with open('mosdns.txt', 'r') as f:
+              with open('rules.txt', 'r') as f:
                   for line_number, line in enumerate(f, 1):
                       stripped_line = line.strip()
                       if not stripped_line:
@@ -58,10 +58,10 @@ jobs:
                           name, url = stripped_line.split(' ', 1)
                           rules_by_name[name].append(url)
                       except ValueError:
-                          print(f"mosdns.txt 格式错误（行 {line_number}）：{stripped_line}")
+                          print(f"rules.txt 格式错误（行 {line_number}）：{stripped_line}")
                           continue
           except FileNotFoundError:
-              print("错误：mosdns.txt 未找到")
+              print("错误：rules.txt 未找到")
               exit(1)
 
           # 定义优先前缀
@@ -194,7 +194,7 @@ jobs:
             echo "没有变更需要提交"
             exit 0
           else
-            git commit -m "更新 mosdns、mihomo、surge 规则，基于 mosdns.txt - $(date -u +'%Y-%m-%d %H:%M:%S UTC')"
+            git commit -m "更新 mosdns、mihomo、surge 规则，基于 rules.txt - $(date -u +'%Y-%m-%d %H:%M:%S UTC')"
             git push
             if [ $? -ne 0 ]; then
               echo "推送变更失败"

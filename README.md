@@ -1,44 +1,37 @@
-# 匹配规则
+# 匹配规则指南
 
-## MosDNS 匹配规则
+## MosDNS 规则
 
-- **domain:**  
-  匹配指定域名及其子域名。  
-  示例：`domain:google.com` 匹配 `google.com`、`www.google.com`、`maps.l.google.com` 等。
+### 直连规则
+- `china_list.txt` - 中国域名列表  
+- `custom_direct.txt` - 自定义直连规则  
+- `tracker.txt` - 追踪器域名  
+- `tesla.txt` - Tesla 相关域名  
+- `local_ptr.txt` - 本地 PTR 记录
 
-- **full:**  
-  仅匹配完全相同的域名。  
-  示例：`full:google.com` 仅匹配 `google.com`。
+### 代理规则
+- `proxy_list.txt` - 代理域名列表  
+- `custom_proxy.txt` - 自定义代理规则  
+- `telegram.txt` - Telegram 相关域名
 
-- **keyword:**  
-  匹配包含指定关键字的域名。  
-  示例：`keyword:google.com` 匹配 `google.com.hk`、`www.google.com.hk` 等。
+### 匹配类型
+| 类型     | 说明 | 示例 |
+|----------|------|------|
+| `domain` | 匹配域名及其子域名 | `google.com` 匹配 `www.google.com` |
+| `full`   | 精确匹配域名 | 仅匹配 `google.com` |
+| `keyword`| 包含关键字的域名 | 匹配 `google.com.hk` |
+| `regexp` | Golang 正则匹配 | `.+\.google\.com$` |
 
-- **regexp:**  
-  使用 Golang 标准正则表达式匹配域名。  
-  示例：`regexp:.+\.google\.com$` 匹配以 `.google.com` 结尾的域名。
+### 注意事项
+1. **优先级**：`full` > `domain` > `regexp` > `keyword`
+2. **性能**：
+   - `domain`/`full`：O(1) 复杂度，1万域名≈1MB内存
+   - `keyword`/`regexp`：O(n) 复杂度，正则较耗资源
 
-- **匹配优先级：**  
-  规则按以下顺序生效：`full` > `domain` > `regexp` > `keyword`。
-
-- **性能：**  
-  - `domain` 和 `full` 使用 HashMap，复杂度 O(1)。约 1 万个域名占用 1MB 内存。  
-  - `keyword` 和 `regexp` 需要遍历，复杂度 O(n)。注意：`regexp` 正则匹配消耗资源较多。
-
-## Mihomo 匹配规则
-
-- **DOMAIN-SUFFIX:**  
-  匹配指定域名及其子域名。  
-  示例：`google.com` 匹配 `www.google.com`、`mail.google.com` 和 `google.com`，但不匹配 `content-google.com`。
-
-- **DOMAIN:**  
-  仅匹配完全相同的域名。  
-  示例：`google.com` 仅匹配 `google.com`。
-
-- **DOMAIN-KEYWORD:**  
-  匹配包含指定关键字的域名。  
-  示例：`google.com` 匹配 `google.com.hk`、`www.google.com.hk` 等。
-
-- **DOMAIN-REGEX:**  
-  使用正则表达式匹配域名。  
-  示例：正则模式 `.+\.google\.com$` 匹配以 `.google.com` 结尾的域名。
+## Mihomo 规则
+| 类型            | 对应 MosDNS 类型 | 示例 |
+|-----------------|------------------|------|
+| `DOMAIN-SUFFIX` | `domain`         | `google.com` 匹配子域名 |
+| `DOMAIN`        | `full`           | 仅匹配 `google.com` |
+| `DOMAIN-KEYWORD`| `keyword`        | 匹配含关键字的域名 |
+| `DOMAIN-REGEX`  | `regexp`         | 正则表达式匹配 |
