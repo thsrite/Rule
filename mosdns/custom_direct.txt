@@ -1,4 +1,5 @@
 full:audio-ak.spotifycdn.com
+full:kktxjq.lol
 full:v4.plex.tv
 full:portcheck.transmissionbt.com
 full:api.day.app
