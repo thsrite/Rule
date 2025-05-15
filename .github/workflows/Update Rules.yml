@@ -122,6 +122,9 @@ jobs:
                       # 处理 Mosdns 规则
                       if core_content not in mosdns_rules:
                           mosdns_rules[core_content] = modified_line
+                      elif any(modified_line.startswith(p) for p in PREFERRED_PREFIXES) and \
+                           not any(mosdns_rules[core_content].startswith(p) for p in PREFERRED_PREFIXES):
+                          mosdns_rules[core_content] = modified_line
 
                       # 处理 Mihomo 规则
                       mihomo_line = modified_line
@@ -134,6 +137,8 @@ jobs:
                       elif modified_line.startswith('regexp:'):
                           mihomo_line = f"DOMAIN-REGEX,{core_content}"
                       if core_content not in mihomo_rules:
+                          mihomo_rules[core_content] = mihomo_line
+                      elif mihomo_line.startswith(('DOMAIN-SUFFIX,', 'DOMAIN,', 'DOMAIN-KEYWORD,', 'DOMAIN-REGEX,')):
                           mihomo_rules[core_content] = mihomo_line
 
                       # 处理 Surge 规则
@@ -148,6 +153,8 @@ jobs:
                           surge_line = f"DOMAIN-REGEX,{core_content}"
                       if core_content not in surge_rules:
                           surge_rules[core_content] = surge_line
+                      elif surge_line.startswith(('DOMAIN-SUFFIX,', 'DOMAIN,', 'DOMAIN-KEYWORD,', 'DOMAIN-REGEX,')):
+                          surge_rules[core_content] = surge_line
 
               # 验证规则
               if not mosdns_rules:
@@ -157,7 +164,7 @@ jobs:
               # 写入 Mosdns 文件
               try:
                   with open(mosdns_file, 'w') as outfile:
-                      for rule_line in sorted(mosdns_rules.values()):
+                      for rule_line in mosdns_rules.values():
                           outfile.write(rule_line + '\n')
                   print(f"更新 {mosdns_file}，共 {len(mosdns_rules)} 条规则")
               except IOError as e:
@@ -167,7 +174,7 @@ jobs:
               # 写入 Mihomo 文件
               try:
                   with open(mihomo_file, 'w') as outfile:
-                      for rule_line in sorted(mihomo_rules.values()):
+                      for rule_line in mihomo_rules.values():
                           outfile.write(rule_line + '\n')
                   print(f"更新 {mihomo_file}，共 {len(mihomo_rules)} 条规则")
               except IOError as e:
@@ -177,7 +184,7 @@ jobs:
               # 写入 Surge 文件
               try:
                   with open(surge_file, 'w') as outfile:
-                      for rule_line in sorted(surge_rules.values()):
+                      for rule_line in surge_rules.values():
                           outfile.write(rule_line + '\n')
                   print(f"更新 {surge_file}，共 {len(surge_rules)} 条规则")
               except IOError as e:
