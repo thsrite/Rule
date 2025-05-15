@@ -25,6 +25,7 @@ domain:a6tka29.com
 domain:a6tkchat.com
 domain:a6tkapi1.com
 domain:roonlabs.net
+domain:jptv.club
 full:global.synologydownload.com
 full:api.insight.synology.com
 full:subscribe.insight.synology.com
