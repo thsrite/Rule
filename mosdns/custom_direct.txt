@@ -1,6 +1,14 @@
+full:audio-ak.spotifycdn.com
+full:v4.plex.tv
+full:portcheck.transmissionbt.com
 full:api.day.app
 full:ntp.org
 full:ip.sb
 full:ip-api.com
 full:ipapi.co
+domain:ip138.com
+domain:ip.sb
+domain:netbird.io
+domain:api.day.app
+full:api4.ipify.org
 keyword:test.
