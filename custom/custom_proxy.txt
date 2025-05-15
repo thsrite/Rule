@@ -25,6 +25,8 @@ DOMAIN-SUFFIX,a6tkapp.com
 DOMAIN-SUFFIX,a6tka29.com
 DOMAIN-SUFFIX,a6tkchat.com
 DOMAIN-SUFFIX,a6tkapi1.com
+DOMAIN-SUFFIX,roonlabs.net
+
 DOMAIN,global.synologydownload.com
 DOMAIN,api.insight.synology.com
 DOMAIN,subscribe.insight.synology.com
