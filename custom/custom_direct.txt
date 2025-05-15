@@ -1,4 +1,5 @@
 DOMAIN,audio-ak.spotifycdn.com
+DOMAIN,kktxjq.lol
 DOMAIN,v4.plex.tv
 DOMAIN,portcheck.transmissionbt.com
 DOMAIN,api.day.app
