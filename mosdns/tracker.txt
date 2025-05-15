@@ -1,5 +1,13 @@
 keyword:tracker
 full:tracker.hhanclub.top
+full:tracker.hhan.club
+full:tracker.cyanbug.net
+full:tracker.hdtime.org
+full:tracker.piggo.me
+full:tracker.hdarea.club
+full:please.passthepopcorn.me
+full:tracker.sjtu.edu.cn
+full:tracker.beyond-hd.me
 full:tracker.pterclub.com
 full:t.audiences.me
 full:tracker.cinefiles.info
@@ -20,7 +28,7 @@ full:tracker.leaves.red
 full:tracker2.leaves.red
 full:tracker3.leaves.red
 full:hdpt.xyz
-full:www.pttime.org
+full:www.pttime.online
 full:t.hddolby.com
 full:tracker.agsvpt.work
 full:tracker.zhuque.in
