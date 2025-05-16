@@ -10,6 +10,7 @@ DOMAIN-SUFFIX,jav321.com
 DOMAIN-SUFFIX,arzon.jp
 DOMAIN-SUFFIX,tmdb.org
 DOMAIN-SUFFIX,themoviedb
+DOMAIN-SUFFIX,thetvdb.com
 DOMAIN-SUFFIX,fanart.tv
 DOMAIN-SUFFIX,opensubtitles.org
 DOMAIN-SUFFIX,opensubtitles.com
@@ -26,6 +27,8 @@ DOMAIN-SUFFIX,a6tkchat.com
 DOMAIN-SUFFIX,a6tkapi1.com
 DOMAIN-SUFFIX,roonlabs.net
 DOMAIN-SUFFIX,jptv.club
+DOMAIN-SUFFIX,mytvsuper.com
+DOMAIN-SUFFIX,tvb.com
 DOMAIN,global.synologydownload.com
 DOMAIN,api.insight.synology.com
 DOMAIN,subscribe.insight.synology.com
@@ -106,3 +109,10 @@ DOMAIN-KEYWORD,notion
 DOMAIN-KEYWORD,termius
 DOMAIN-KEYWORD,gitbook
 DOMAIN-KEYWORD,argotunnel
+DOMAIN-SUFFIX,livednow.com
+DOMAIN-SUFFIX,orz-7.com
+DOMAIN-SUFFIX,4gtv.tv
+DOMAIN-SUFFIX,hinet.net
+DOMAIN-SUFFIX,ofiii.com
+DOMAIN-SUFFIX,googlevideo.com
+DOMAIN-SUFFIX,mytvsuper.com

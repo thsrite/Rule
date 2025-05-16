@@ -10,6 +10,7 @@ domain:jav321.com
 domain:arzon.jp
 domain:tmdb.org
 domain:themoviedb
+domain:thetvdb.com
 domain:fanart.tv
 domain:opensubtitles.org
 domain:opensubtitles.com
@@ -26,6 +27,8 @@ domain:a6tkchat.com
 domain:a6tkapi1.com
 domain:roonlabs.net
 domain:jptv.club
+domain:mytvsuper.com
+domain:tvb.com
 full:global.synologydownload.com
 full:api.insight.synology.com
 full:subscribe.insight.synology.com
@@ -106,3 +109,10 @@ keyword:notion
 keyword:termius
 keyword:gitbook
 keyword:argotunnel
+domain:livednow.com
+domain:orz-7.com
+domain:4gtv.tv
+domain:hinet.net
+domain:ofiii.com
+domain:googlevideo.com
+domain:mytvsuper.com
