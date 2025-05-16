@@ -1,3 +1,4 @@
+full:beesport.livednow.com
 full:audio-ak.spotifycdn.com
 full:kktxjq.lol
 full:v4.plex.tv
@@ -13,3 +14,11 @@ domain:netbird.io
 domain:api.day.app
 full:api4.ipify.org
 keyword:test.
+domain:dnsany.com
+domain:cmvideo.cn
+domain:chinamobile.com
+domain:mobaibox.com
+domain:gitv.tv
+domain:cctv.cn
+domain:yangshipin.cn
+IP-CIDR,183.206.0.0/15
