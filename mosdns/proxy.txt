@@ -17,6 +17,7 @@ domain:100ke.org
 domain:10beasts.net
 domain:10conditionsoflove.com
 domain:10musume.com
+domain:111666.best
 domain:123rf.com
 domain:12bet.com
 domain:12vpn.com
@@ -45,16 +46,7 @@ domain:1998cdp.org
 domain:1bao.org
 domain:1dumb.com
 domain:1eew.com
-domain:1lib.cloud
-domain:1lib.cz
-domain:1lib.domains
-domain:1lib.education
-domain:1lib.eu
-domain:1lib.limited
-domain:1lib.pl
 domain:1lib.sk
-domain:1lib.to
-domain:1lib.tw
 domain:1mobile.com
 domain:1mobile.tw
 domain:1password.com
@@ -79,7 +71,6 @@ domain:24hrs.ca
 domain:24smile.org
 domain:25u.com
 domain:2du5.com
-domain:2lib.org
 domain:2lipstube.com
 domain:2shared.com
 domain:2waky.com
@@ -92,7 +83,6 @@ domain:3a5a.com
 domain:3arabtv.com
 domain:3boys2girls.com
 domain:3d-game.com
-domain:3lib.net
 domain:3proxy.ru
 domain:3ren.ca
 domain:3tui.net
@@ -425,7 +415,6 @@ domain:arethusa.su
 domain:arlingtoncemetery.mil
 domain:armorgames.com
 domain:army.mil
-domain:art1lib.com
 domain:art4tibet1998.org
 domain:arte.tv
 domain:artofpeacefoundation.org
@@ -465,7 +454,6 @@ domain:atlaspost.com
 domain:atnext.com
 domain:att.com
 domain:audacy.com
-domain:audiomack.com
 domain:audionow.com
 domain:autodraw.com
 domain:av-e-body.com
@@ -498,11 +486,7 @@ domain:azubu.tv
 domain:azure.com
 domain:azureedge.net
 domain:azurewebsites.net
-domain:b-ok.africa
-domain:b-ok.asia
 domain:b-ok.cc
-domain:b-ok.global
-domain:b-ok.org
 domain:b0ne.com
 domain:baby-kingdom.com
 domain:babylonbee.com
@@ -722,18 +706,9 @@ domain:bonbonsex.com
 domain:bonfoundation.org
 domain:boobstagram.com
 domain:book.com.tw
-domain:book4you.org
 domain:bookdepository.com
 domain:bookepub.com
-domain:bookfi.net
 domain:books.com.tw
-domain:booksc.eu
-domain:booksc.me
-domain:booksc.org
-domain:booksc.xyz
-domain:bookshome.info
-domain:bookshome.net
-domain:bookshome.world
 domain:booktopia.com.au
 domain:bookwalker.com.tw
 domain:boomssr.com
@@ -1128,7 +1103,6 @@ domain:clips4sale.com
 domain:cloakpoint.com
 domain:cloud.cupronickel.goog
 domain:cloudcone.com
-domain:cloudflare-dns.com
 domain:cloudflare-ipfs.com
 domain:cloudflare.com
 domain:cloudfront.net
@@ -1175,7 +1149,6 @@ domain:cofacts.tw
 domain:coin2co.in
 domain:coinbase.com
 domain:coinbene.com
-domain:coincarp.com
 domain:coinegg.com
 domain:coinex.com
 domain:coingecko.com
@@ -1191,7 +1164,6 @@ domain:collateralmurder.org
 domain:com.uk
 domain:comedycentral.com
 domain:comefromchina.com
-domain:comffvpn.com
 domain:comic-mega.me
 domain:comico.tw
 domain:commandarms.com
@@ -1362,7 +1334,6 @@ domain:ddex.io
 domain:ddhw.info
 domain:dditscdn.com
 domain:de-sci.org
-domain:de1lib.org
 domain:deadhouse.org
 domain:deadline.com
 domain:deaftone.com
@@ -1800,7 +1771,6 @@ domain:fangong.org
 domain:fangongheike.com
 domain:fanhaodang.com
 domain:fanhaolou.com
-domain:fani.com
 domain:fanqiang.network
 domain:fanqiang.tk
 domain:fanqiangdang.com
@@ -1816,7 +1786,6 @@ domain:faqserv.com
 domain:fartit.com
 domain:farwestchina.com
 domain:fast.com
-domain:fast.wistia.com
 domain:fastestvpn.com
 domain:fastly.net
 domain:fastmail.com
@@ -1825,7 +1794,6 @@ domain:fastssh.com
 domain:faststone.org
 domain:fatakat-n.club
 domain:fatbtc.com
-domain:favcomic.com
 domain:favotter.net
 domain:favstar.fm
 domain:fawanghuihui.org
@@ -2137,7 +2105,6 @@ domain:geekerhome.com
 domain:geekheart.info
 domain:gekikame.com
 domain:gelbooru.com
-domain:gemini.com
 domain:generated.photos
 domain:geni.us
 domain:genius.com
@@ -2234,7 +2201,6 @@ domain:gmx.net
 domain:gnci.org.hk
 domain:gnews.org
 domain:go-pki.com
-domain:go-to-library.sk
 domain:go-to-zlibrary.se
 domain:go.com
 domain:go.jp
@@ -2363,7 +2329,6 @@ domain:gyatsostudio.com
 domain:gzm.tv
 domain:gzone-anime.info
 domain:h-china.org
-domain:h-ciyuan.com
 domain:h-moe.com
 domain:h1n1china.org
 domain:h528.com
@@ -2486,7 +2451,6 @@ domain:hjd2048.com
 domain:hk-pub.com
 domain:hk.hao123img.com
 domain:hk01.com
-domain:hk1lib.org
 domain:hk32168.com
 domain:hkacg.com
 domain:hkacg.net
@@ -2570,6 +2534,7 @@ domain:hotair.com
 domain:hotav.tv
 domain:hotbak.net
 domain:hotcoin.com
+domain:hotcool.tw
 domain:hotfrog.com.tw
 domain:hotgoo.com
 domain:hotpot.hk
@@ -2663,11 +2628,9 @@ domain:hybrid-analysis.com
 domain:hyperrate.com
 domain:hypothes.is
 domain:hyread.com.tw
-domain:hysteria.network
 domain:i-cable.com
 domain:i-part.com.tw
 domain:i-scmp.com
-domain:i.111666.best
 domain:i1.hk
 domain:i2p2.de
 domain:i2runner.com
@@ -2867,7 +2830,6 @@ domain:isuntv.com
 domain:isupportuyghurs.org
 domain:itaboo.info
 domain:itaiwan.gov.tw
-domain:italian-books.sk
 domain:italiatibet.org
 domain:itasoftware.com
 domain:itemdb.com
@@ -3199,9 +3161,6 @@ domain:libertysculpturepark.com
 domain:libertytimes.com.tw
 domain:libraryinformationtechnology.com
 domain:libredd.it
-domain:libsolutions.app
-domain:libsolutions.domains
-domain:libsolutions.net
 domain:libsyn.com
 domain:licdn.com
 domain:lidecheng.com
@@ -3320,7 +3279,6 @@ domain:m-team.cc
 domain:m.me
 domain:m8008.com
 domain:ma.hao123.com
-domain:ma1lib.org
 domain:macgamestore.com
 domain:macid.co
 domain:macromedia.com
@@ -3361,7 +3319,6 @@ domain:manicur4ik.ru
 domain:mansion.com
 domain:mansionpoker.com
 domain:manta.com
-domain:manwa.me
 domain:manyvoices.news
 domain:maplew.com
 domain:marc.info
@@ -3618,6 +3575,7 @@ domain:msn.com
 domain:msn.com.tw
 domain:mstdn.social
 domain:mswe1.org
+domain:mt.co.kr
 domain:mthruf.com
 domain:mtw.tl
 domain:mubi.com
@@ -3786,7 +3744,6 @@ domain:newipnow.com
 domain:newlandmagazine.com.au
 domain:newmitbbs.com
 domain:newnews.ca
-domain:news.mt.co.kr
 domain:news1.kr
 domain:news100.com.tw
 domain:newsancai.com
@@ -3841,7 +3798,6 @@ domain:nike.com
 domain:nikke-en.com
 domain:nikke-jp.com
 domain:nikke-kr.com
-domain:nikke.hotcool.tw
 domain:nikkei.com
 domain:nikonpc.com
 domain:nimg.jp
@@ -4038,7 +3994,6 @@ domain:open.com.hk
 domain:openallweb.com
 domain:openbase.com
 domain:opendemocracy.net
-domain:opendesktop.org
 domain:opendn.xyz
 domain:openervpn.in
 domain:openid.net
@@ -4604,7 +4559,6 @@ domain:rthk.hk
 domain:rthk.org.hk
 domain:rti.org.tw
 domain:rti.tw
-domain:rtm.tnt-ea.com
 domain:rtycminnesota.org
 domain:ruanyifeng.com
 domain:rukor.org
@@ -4637,7 +4591,6 @@ domain:sadpanda.us
 domain:safechat.com
 domain:safeguarddefenders.com
 domain:safervpn.com
-domain:sagernet.org
 domain:saintyculture.com
 domain:saiq.me
 domain:sakuralive.com
@@ -4735,7 +4688,6 @@ domain:sfshibao.com
 domain:sftindia.org
 domain:sftuk.org
 domain:sfx.ms
-domain:sg1lib.org
 domain:sgwritings.com
 domain:sgzhan.com
 domain:shadeyouvpn.com
@@ -4818,11 +4770,7 @@ domain:sina.com.tw
 domain:sinchew.com.my
 domain:singaporepools.com.sg
 domain:singfortibet.com
-domain:singlelogin.app
-domain:singlelogin.me
-domain:singlelogin.re
 domain:singlelogin.se
-domain:singlelogin.site
 domain:singpao.com.hk
 domain:singtao.ca
 domain:singtao.com
@@ -4945,7 +4893,6 @@ domain:sos.org
 domain:sosad.fun
 domain:sosreader.com
 domain:sostibet.org
-domain:sotwe.com
 domain:sou-tong.org
 domain:soubory.com
 domain:soul-plus.net
@@ -5007,7 +4954,6 @@ domain:ssglobal.co
 domain:ssglobal.me
 domain:ssh91.com
 domain:ssl443.org
-domain:ssm.fun
 domain:sspanel.net
 domain:sspanel.org
 domain:sspro.ml
@@ -5324,7 +5270,6 @@ domain:thisav.com
 domain:thlib.org
 domain:thomasbernhard.org
 domain:thongdreams.com
-domain:thotsbay.tv
 domain:threadreaderapp.com
 domain:threads.com
 domain:threads.net
@@ -5468,6 +5413,7 @@ domain:tnaflix.com
 domain:tngrnow.com
 domain:tngrnow.net
 domain:tnp.org
+domain:tnt-ea.com
 domain:todoist.com
 domain:togetter.com
 domain:toggleable.com
@@ -6168,6 +6114,7 @@ domain:wiredpen.com
 domain:wireguard.com
 domain:wisdompubs.org
 domain:wisevid.com
+domain:wistia.com
 domain:witnessleeteaching.com
 domain:witopia.net
 domain:wizcrafts.net
@@ -6445,11 +6392,8 @@ domain:z-lib.fm
 domain:z-lib.fo
 domain:z-lib.gd
 domain:z-lib.gl
-domain:z-lib.gs
 domain:z-lib.io
 domain:z-lib.org
-domain:z-lib.ps
-domain:z-library.se
 domain:z-library.sk
 domain:zacebook.com
 domain:zalmos.com
@@ -6501,9 +6445,6 @@ domain:zinio.com
 domain:zippyshare.com
 domain:zkaip.com
 domain:zkiz.com
-domain:zlib.life
-domain:zlibcdn.com
-domain:zlibcdn2.com
 domain:zmedia.com.tw
 domain:zodgame.us
 domain:zodgame.xyz

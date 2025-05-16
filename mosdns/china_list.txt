@@ -123413,9 +123413,6 @@ domain:cz88.net
 domain:czybjz.com
 domain:dandanzan.com
 domain:dct-cloud.com
-domain:didiaustralia.blog
-domain:didiglobal.com
-domain:didimobility.co.jp
 domain:dler.cloud
 domain:ebscohost.com
 domain:ecitic.net
@@ -123643,6 +123640,9 @@ domain:wo-link.tech
 domain:baotoo.com
 domain:maikr.com
 domain:dandanplayer.com
+domain:didiaustralia.blog
+domain:didiglobal.com
+domain:didimobility.co.jp
 domain:didiopenapi.com
 domain:pgyer.cc
 domain:pgyer.im
@@ -124273,8 +124273,8 @@ domain:hukewq.com
 domain:nbhuke.com
 domain:ntes53.net
 domain:playdisorder.com
-domain:yunxinsvip.com
 domain:yun-app.net
+domain:yunxinsvip.com
 domain:ibreeno.com
 domain:realme.net
 domain:realmeservice.com
@@ -124474,10 +124474,10 @@ keyword:aliyun
 keyword:beplay
 keyword:officecdn
 keyword:bilibili
-keyword:qiyi
 keyword:hnagroup
 keyword:stripe
 keyword:weibo
+keyword:qiyi
 PROCESS-NAME,com.taobao.taobao
 PROCESS-NAME,com.bilibili.app.blue
 PROCESS-NAME,com.bilibili.app.in
