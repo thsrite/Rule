@@ -1328,3 +1328,4 @@ DOMAIN-KEYWORD,ttvnw
 DOMAIN-KEYWORD,tvbanywhere
 DOMAIN-KEYWORD,uk-live
 DOMAIN-KEYWORD,voddazn
+IP-CIDR6,2607:fb10::/32,no-resolve

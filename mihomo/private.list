@@ -121,3 +121,4 @@ DOMAIN-SUFFIX,tplogin.cn
 DOMAIN-SUFFIX,ts.net
 DOMAIN-SUFFIX,wifi.cmcc
 DOMAIN-SUFFIX,zte.home
+IP-CIDR6,::/127,no-resolve
