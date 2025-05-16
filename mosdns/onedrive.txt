@@ -13,5 +13,3 @@ domain:storage.msn.com
 keyword:1drv
 keyword:onedrive
 keyword:skydrive
-PROCESS-NAME,OneDrive
-PROCESS-NAME,OneDriveUpdater

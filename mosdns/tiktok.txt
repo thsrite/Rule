@@ -24,4 +24,3 @@ domain:tiktokv.com
 domain:tiktokv.us
 domain:ttwebview.com
 keyword:tiktok
-PROCESS-NAME,com.zhiliaoapp.musically

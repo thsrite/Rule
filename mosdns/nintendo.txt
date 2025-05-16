@@ -124,4 +124,3 @@ domain:xenoblade.com
 domain:xn--mts47c3w9b1qr.cn
 domain:xn--mts47c3w9b1qr.net
 domain:yoshisnewisland.com
-IP-CIDR,35.192.0.0/12,no-resolve

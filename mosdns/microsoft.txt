@@ -664,5 +664,3 @@ domain:spoprod-a.akamaihd.net
 keyword:1drv
 keyword:onedrive
 keyword:skydrive
-PROCESS-NAME,OneDrive
-PROCESS-NAME,OneDriveUpdater
