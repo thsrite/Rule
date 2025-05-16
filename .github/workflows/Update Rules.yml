@@ -133,12 +133,12 @@ jobs:
                       # 处理 Mosdns 规则
                       if any(modified_line.startswith(prefix) for prefix in EXCLUDED_MOSDNS_PREFIXES):
                           print(f"跳过 Mosdns 排除的规则（{url}）：{modified_line}")
-                          continue
-                      if core_content not in mosdns_rules:
-                          mosdns_rules[core_content] = modified_line
-                      elif any(modified_line.startswith(p) for p in PREFERRED_PREFIXES) and \
-                           not any(mosdns_rules[core_content].startswith(p) for p in PREFERRED_PREFIXES):
-                          mosdns_rules[core_content] = modified_line
+                      else:
+                          if core_content not in mosdns_rules:
+                              mosdns_rules[core_content] = modified_line
+                          elif any(modified_line.startswith(p) for p in PREFERRED_PREFIXES) and \
+                               not any(mosdns_rules[core_content].startswith(p) for p in PREFERRED_PREFIXES):
+                              mosdns_rules[core_content] = modified_line
 
                       # 处理 Mihomo 规则
                       mihomo_line = stripped_line  # 默认使用原始规则
