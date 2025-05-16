@@ -664,3 +664,5 @@ DOMAIN-SUFFIX,spoprod-a.akamaihd.net
 DOMAIN-KEYWORD,1drv
 DOMAIN-KEYWORD,onedrive
 DOMAIN-KEYWORD,skydrive
+PROCESS-NAME,OneDrive
+PROCESS-NAME,OneDriveUpdater
