@@ -70,6 +70,11 @@ jobs:
           # 定义需要排除的 Mosdns 规则前缀
           EXCLUDED_MOSDNS_PREFIXES = {'IP-CIDR', 'PROCESS-NAME', 'IP-ASN', 'IP-CIDR6'}
 
+          # 定义所有可能的规则前缀（包括 Surge/Mihomo 格式）
+          ALL_PREFIXES = PREFERRED_PREFIXES | EXCLUDED_MOSDNS_PREFIXES | {
+              'DOMAIN-SUFFIX,', 'DOMAIN,', 'DOMAIN-KEYWORD,', 'DOMAIN-REGEX,'
+          }
+
           # 并行下载 URL 内容
           def fetch_url(url):
               try:
@@ -114,16 +119,17 @@ jobs:
 
                       # 提取核心内容（去掉前缀）
                       core_content = modified_line
-                      for prefix in PREFERRED_PREFIXES:
+                      rule_prefix = None
+                      for prefix in ALL_PREFIXES:
                           if modified_line.startswith(prefix):
                               core_content = modified_line[len(prefix):].strip()
+                              rule_prefix = prefix
                               break
                       if not core_content:
                           print(f"无效规则（{url}）：{modified_line}")
                           continue
 
                       # 处理 Mosdns 规则
-                      # 检查是否包含需要排除的前缀
                       if any(modified_line.startswith(prefix) for prefix in EXCLUDED_MOSDNS_PREFIXES):
                           print(f"跳过 Mosdns 排除的规则（{url}）：{modified_line}")
                           continue
@@ -143,6 +149,9 @@ jobs:
                           mihomo_line = f"DOMAIN-KEYWORD,{core_content}"
                       elif modified_line.startswith('regexp:'):
                           mihomo_line = f"DOMAIN-REGEX,{core_content}"
+                      else:
+                          # 保留原始格式（例如 IP-CIDR, PROCESS-NAME 等）
+                          mihomo_line = stripped_line if rule_prefix in EXCLUDED_MOSDNS_PREFIXES else modified_line
                       if core_content not in mihomo_rules:
                           mihomo_rules[core_content] = mihomo_line
                       elif mihomo_line.startswith(('DOMAIN-SUFFIX,', 'DOMAIN,', 'DOMAIN-KEYWORD,', 'DOMAIN-REGEX,')):
@@ -158,6 +167,9 @@ jobs:
                           surge_line = f"DOMAIN-KEYWORD,{core_content}"
                       elif modified_line.startswith('regexp:'):
                           surge_line = f"DOMAIN-REGEX,{core_content}"
+                      else:
+                          # 保留原始格式（例如 IP-CIDR, PROCESS-NAME 等）
+                          surge_line = stripped_line if rule_prefix in EXCLUDED_MOSDNS_PREFIXES else modified_line
                       if core_content not in surge_rules:
                           surge_rules[core_content] = surge_line
                       elif surge_line.startswith(('DOMAIN-SUFFIX,', 'DOMAIN,', 'DOMAIN-KEYWORD,', 'DOMAIN-REGEX,')):
