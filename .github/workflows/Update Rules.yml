@@ -67,6 +67,9 @@ jobs:
           # 定义优先前缀
           PREFERRED_PREFIXES = {'domain:', 'full:', 'keyword:', 'regexp:'}
 
+          # 定义需要排除的 Mosdns 规则前缀
+          EXCLUDED_MOSDNS_PREFIXES = {'IP-CIDR', 'PROCESS-NAME', 'IP-ASN', 'IP-CIDR6'}
+
           # 并行下载 URL 内容
           def fetch_url(url):
               try:
@@ -120,6 +123,10 @@ jobs:
                           continue
 
                       # 处理 Mosdns 规则
+                      # 检查是否包含需要排除的前缀
+                      if any(modified_line.startswith(prefix) for prefix in EXCLUDED_MOSDNS_PREFIXES):
+                          print(f"跳过 Mosdns 排除的规则（{url}）：{modified_line}")
+                          continue
                       if core_content not in mosdns_rules:
                           mosdns_rules[core_content] = modified_line
                       elif any(modified_line.startswith(p) for p in PREFERRED_PREFIXES) and \
