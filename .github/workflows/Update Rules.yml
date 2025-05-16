@@ -68,11 +68,12 @@ jobs:
           PREFERRED_PREFIXES = {'domain:', 'full:', 'keyword:', 'regexp:'}
 
           # 定义需要排除的 Mosdns 规则前缀
-          EXCLUDED_MOSDNS_PREFIXES = {'IP-CIDR', 'PROCESS-NAME', 'IP-ASN', 'IP-CIDR6'}
+          EXCLUDED_MOSDNS_PREFIXES = {'IP-CIDR', 'IP-CIDR6', 'PROCESS-NAME', 'IP-ASN'}
 
-          # 定义所有可能的规则前缀（包括 Surge/Mihomo 格式）
+          # 定义所有可能的规则前缀
           ALL_PREFIXES = PREFERRED_PREFIXES | EXCLUDED_MOSDNS_PREFIXES | {
-              'DOMAIN-SUFFIX,', 'DOMAIN,', 'DOMAIN-KEYWORD,', 'DOMAIN-REGEX,'
+              'DOMAIN-SUFFIX,', 'DOMAIN,', 'DOMAIN-KEYWORD,', 'DOMAIN-REGEX,',
+              'IP-CIDR,', 'IP-CIDR6,'
           }
 
           # 并行下载 URL 内容
@@ -122,23 +123,30 @@ jobs:
                       rule_prefix = None
                       for prefix in ALL_PREFIXES:
                           if modified_line.startswith(prefix):
-                              # 提取前缀后的内容，移除可能的参数（如 no-resolve）
                               core_content = modified_line[len(prefix):].split(',')[0].strip()
                               rule_prefix = prefix
                               break
-                      if not core_content:
-                          print(f"无效规则（{url}）：{modified_line}")
+                      
+                      # 处理 IP-CIDR 规则（仅适用于 Mihomo 和 Surge）
+                      if any(modified_line.startswith(prefix) for prefix in EXCLUDED_MOSDNS_PREFIXES):
+                          print(f"跳过 Mosdns 不支持的规则（{url}）：{modified_line}")
+                          # 保留原始规则给 Mihomo 和 Surge
+                          mihomo_line = stripped_line
+                          surge_line = stripped_line
+                          # 使用整个规则作为核心内容（确保唯一性）
+                          core_content = stripped_line
+                          if core_content not in mihomo_rules:
+                              mihomo_rules[core_content] = mihomo_line
+                          if core_content not in surge_rules:
+                              surge_rules[core_content] = surge_line
                           continue
 
                       # 处理 Mosdns 规则
-                      if any(modified_line.startswith(prefix) for prefix in EXCLUDED_MOSDNS_PREFIXES):
-                          print(f"跳过 Mosdns 排除的规则（{url}）：{modified_line}")
-                      else:
-                          if core_content not in mosdns_rules:
-                              mosdns_rules[core_content] = modified_line
-                          elif any(modified_line.startswith(p) for p in PREFERRED_PREFIXES) and \
-                               not any(mosdns_rules[core_content].startswith(p) for p in PREFERRED_PREFIXES):
-                              mosdns_rules[core_content] = modified_line
+                      if core_content not in mosdns_rules:
+                          mosdns_rules[core_content] = modified_line
+                      elif any(modified_line.startswith(p) for p in PREFERRED_PREFIXES) and \
+                           not any(mosdns_rules[core_content].startswith(p) for p in PREFERRED_PREFIXES):
+                          mosdns_rules[core_content] = modified_line
 
                       # 处理 Mihomo 规则
                       mihomo_line = stripped_line  # 默认使用原始规则
@@ -171,7 +179,7 @@ jobs:
                           surge_rules[core_content] = surge_line
 
               # 验证规则
-              if not mosdns_rules:
+              if not mosdns_rules and not mihomo_rules and not surge_rules:
                   print(f"警告：{name} 没有生成有效规则")
                   continue
 
