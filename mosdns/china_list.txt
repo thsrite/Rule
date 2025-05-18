@@ -123312,6 +123312,8 @@ domain:luckincalendar.com
 domain:qmoji.mobi
 domain:qmoji.net
 domain:berlin8.org
+domain:ccbintl.com.hk
+domain:ccbseoul.com
 domain:apecn.com
 domain:cibn-intl.com
 domain:cri-on.com
@@ -123344,7 +123346,6 @@ domain:356884.com
 domain:51ym.me
 domain:aaplimg.com
 domain:abercrombie.com
-domain:acfun.tv
 domain:acm.org
 domain:adobesc.com
 domain:afp.adchina.com
@@ -123379,8 +123380,6 @@ domain:bstatic.com
 domain:btcfans.com
 domain:cambridge.org
 domain:cas.org
-domain:ccbintl.com.hk
-domain:ccbseoul.com
 domain:chinaunicom.com.hk
 domain:chinaunicomglobal.com
 domain:chua.pro
@@ -123477,7 +123476,6 @@ domain:jidian.im
 domain:jpopsuki.eu
 domain:jsboxbbs.com
 domain:jstor.org
-domain:jstucdn.com
 domain:jxlog.istreamsche.com
 domain:karger.com
 domain:kaspersky-labs.com
@@ -123589,11 +123587,9 @@ domain:xslb.net
 domain:yach.me
 domain:zhangzishi.cc
 domain:zhuihd.com
-domain:zimuzu.tv
 domain:zmz002.com
-domain:zmz2019.com
-domain:zmzapi.com
-domain:zmzapi.net
+domain:71.am.com
+domain:acfun.tv
 domain:androidgo.duapp.com
 domain:cdn.zampdsp.com
 domain:cm.fancyapi.com
@@ -123605,12 +123601,17 @@ domain:domesticmedia.tv
 domain:domesticmediagame.co
 domain:domesticmediagame.net
 domain:domesticmediapay.com
+domain:jstucdn.com
 domain:noxagile.duapp.com
 domain:p-bstarstatic.akamaized.net
 domain:p.bstarstatic.com
 domain:s.zampdsp.com
 domain:upos-bstar-mirrorakam.akamaized.net
 domain:upos-bstar1-mirrorakam.akamaized.net
+domain:zimuzu.tv
+domain:zmz2019.com
+domain:zmzapi.com
+domain:zmzapi.net
 domain:migugk.com
 domain:01058511989.com
 domain:21cnimg.com
@@ -123650,7 +123651,6 @@ domain:domobnetwork.com
 domain:duomeng.net
 domain:duomeng.org
 domain:moxz.net
-domain:doyonoc.com
 domain:xingxuanwaimai.com
 domain:wisestcloud.com
 domain:9iwanwan.com
@@ -124264,8 +124264,8 @@ domain:hukewq.com
 domain:nbhuke.com
 domain:ntes53.net
 domain:playdisorder.com
-domain:yun-app.net
 domain:yunxinsvip.com
+domain:yun-app.net
 domain:ibreeno.com
 domain:realme.net
 domain:realmeservice.com
@@ -124319,6 +124319,7 @@ domain:accessibilityunion.org
 domain:aitangyou.com
 domain:apcdns.com
 domain:cfmna-tencent.com
+domain:doyonoc.com
 domain:gameloop.fun
 domain:nba.com
 domain:prayaya.com
@@ -124447,7 +124448,6 @@ domain:ichangyan.com
 domain:iflyauto-solution.com
 domain:isay365.hk
 domain:isay365.org
-domain:71.am.com
 domain:01hub.com
 domain:app.so
 domain:appsolution.cc
@@ -124466,7 +124466,7 @@ keyword:aliyun
 keyword:beplay
 keyword:officecdn
 keyword:bilibili
+keyword:qiyi
 keyword:hnagroup
 keyword:stripe
 keyword:weibo
-keyword:qiyi
