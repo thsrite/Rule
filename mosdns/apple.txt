@@ -1467,7 +1467,6 @@ domain:apple.news
 domain:appleenews.com
 domain:applemusic.berlin
 domain:applemusic.co
-domain:applemusic.com
 domain:applemusic.com.au
 domain:applemusic.hamburg
 domain:applemusic.wang
@@ -1500,6 +1499,7 @@ domain:iphoto.se
 domain:iphoto.wang
 domain:musickit.net
 domain:wwwapplemusic.com
+domain:applemusic.com
 domain:apple-dns.net
 domain:appsto.re
 domain:digicert.com
